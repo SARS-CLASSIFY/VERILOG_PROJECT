@@ -1,4 +1,0 @@
-# VERILOG_PROJECT
-FPGA训练代码
-
-branch1: DDA_WAVE_GEN
