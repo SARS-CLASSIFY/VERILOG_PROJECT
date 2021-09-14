@@ -1,4 +1,7 @@
-# VERILOG_PROJECT
-FPGA训练代码
+# fir_filter
+- 30K低通示例
 
-branch1: DDA_WAVE_GEN
+- 详细见：[https://www.cnblogs.com/sars1003/p/13656454.html](https://www.cnblogs.com/sars1003/p/13656454.html)
+
+  
+
