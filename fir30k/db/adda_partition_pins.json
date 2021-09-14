@@ -1,0 +1,85 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "daclk",
+					"strict" : false
+				},
+				{
+					"name" : "dadata[0]",
+					"strict" : false
+				},
+				{
+					"name" : "dadata[1]",
+					"strict" : false
+				},
+				{
+					"name" : "dadata[2]",
+					"strict" : false
+				},
+				{
+					"name" : "dadata[3]",
+					"strict" : false
+				},
+				{
+					"name" : "dadata[4]",
+					"strict" : false
+				},
+				{
+					"name" : "dadata[5]",
+					"strict" : false
+				},
+				{
+					"name" : "dadata[6]",
+					"strict" : false
+				},
+				{
+					"name" : "dadata[7]",
+					"strict" : false
+				},
+				{
+					"name" : "adclk",
+					"strict" : false
+				},
+				{
+					"name" : "clk",
+					"strict" : false
+				},
+				{
+					"name" : "addata[7]",
+					"strict" : false
+				},
+				{
+					"name" : "addata[6]",
+					"strict" : false
+				},
+				{
+					"name" : "addata[4]",
+					"strict" : false
+				},
+				{
+					"name" : "addata[5]",
+					"strict" : false
+				},
+				{
+					"name" : "addata[1]",
+					"strict" : false
+				},
+				{
+					"name" : "addata[0]",
+					"strict" : false
+				},
+				{
+					"name" : "addata[2]",
+					"strict" : false
+				},
+				{
+					"name" : "addata[3]",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
