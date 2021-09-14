@@ -1,4 +1,7 @@
 # VERILOG_PROJECT
 FPGA训练代码
 
-branch1: DDA_WAVE_GEN
+DDA_WAVE_GEN
+dds_hmi
+fir_filter
+cftools(MATLAB曲线拟合)
