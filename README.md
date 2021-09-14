@@ -1,8 +1,10 @@
 # VERILOG_PROJECT
-DDA_WAVE_GEN
+- #### FPGA训练代码部分
 
-dds_hmi
+  1. dds_wave_gen
+  2. dds_hmi
+  3. fri_filter
 
-fir_filter
+- #### MATLAB工具使用
 
-cftools(MATLAB曲线拟合)
+  1. cftools(MATLAB数据拟合工具)
