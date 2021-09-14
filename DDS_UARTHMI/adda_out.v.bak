@@ -1,0 +1,155 @@
+`timescale 1ns/1ps
+module adda_out(
+    input clk,
+    output wire [7:0] dacdata,
+    output dac_clk,
+
+
+    input    [3:0] key_in,
+
+
+    input                         uart_rx,//串口通信相关
+    output                        uart_tx
+
+);
+    wire rst_n=key_in[0];
+
+    wire [7:0] rom_address;//例化的输出只能为wire型
+    assign dac_clk=clk;
+
+
+
+initial
+begin
+
+    truefre=60'd0;
+
+end
+
+
+/***********************************************/
+    reg [3:0]   key;//检测按键是否按下
+    wire[3:0]    flag;
+
+//按键状态锁存
+always@(negedge clk)
+begin
+    if(flag==4'b1000)
+    begin
+    key<=4'b1000;
+    end
+    else if (flag==4'b0100)
+    begin
+    key<=4'b0100;
+    end
+    else if (flag==4'b0010)
+    begin
+    key<=4'b0010;
+    end
+end
+/***********波形选择*************************/
+wire [7:0] rom_data;
+wire [7:0] rom_datarec;//save rec
+wire [7:0] rom_datatri;//save tri
+reg [7:0] save_data;//存储选择的输出的波形
+assign dacdata =  save_data;//get rom data
+
+
+always @(negedge clk)
+begin
+    if(key==4'b1000 )
+    begin
+        save_data<=rom_data;
+    end
+    else if(key==4'b0100 )
+    begin
+        save_data<=rom_datarec;
+    end
+        else if(key==4'b0010 )
+    begin
+        save_data<=rom_datatri;
+    end
+end
+/**************频率控制***********************
+
+***********串口通信相关************************/
+wire    [7:0]     receive_data;    //存储串口得到的数据
+reg [59:0] truefre;
+wire rxflag;//判断数据是否接收完毕
+//计算公式：fre=2^32*F(希望得到的频率)*TCLK(时钟源的周期，此处为20ns)
+
+
+always@(negedge clk)
+begin
+    if(rxflag==1'b1)
+    begin
+        if( receive_data>=8'd48 && receive_data<=8'd57)
+        begin
+            truefre<=truefre*10+receive_data-8'd48;
+        end
+        else if(receive_data==8'd115)
+
+        begin
+            truefre<=truefre*8589934/100000;//注意数据溢出
+        end
+
+        else
+
+        begin
+            truefre<=60'd0;
+        end
+
+    end
+
+
+end
+/**************模块例化过程*******************/
+
+addr_ctrl addr_ctrl_inst(
+    .clk_50M(clk),
+    .rst_n(rst_n),
+    .addr(rom_address),
+    .freqctrl(truefre[31:0])
+
+);
+
+sin sin_inst(
+    .clock(clk),
+    .address(rom_address),
+    .q(rom_data)
+
+);
+
+
+
+rec rec_inst(
+    .clock(clk),
+    .address(rom_address),
+    .q(rom_datarec)
+
+
+);
+
+tri_x tri_x_inst(
+    .clock(clk),
+    .address(rom_address),
+    .q(rom_datatri)
+);
+
+key_test key_test_inst(        //key模块例化
+    .clk(clk),
+    .key(key_in),
+    .led(flag)
+);
+
+uart_test uart_test_inst(
+    .clk(clk),
+    .rst_n(key_in[0]),
+    .uart_rx(uart_rx),
+    .uart_tx(uart_tx),
+    .receive_data(receive_data),
+    .rxflag(rxflag)
+);
+
+
+endmodule

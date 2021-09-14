@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Tue Sep 07 08:55:07 2021
+Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Standard Edition
+Revision Name : DDS
+Top-level Entity Name : adda_out
+Family : Cyclone IV E
+Total logic elements : 2,666
+    Total combinational functions : 2,647
+    Dedicated logic registers : 198
+Total registers : 198
+Total pins : 16
+Total virtual pins : 0
+Total memory bits : 6,144
+Embedded Multiplier 9-bit elements : 14
+Total PLLs : 0
